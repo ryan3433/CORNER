@@ -1,0 +1,19 @@
+extends layouts/main
+
+block content
+    body
+        a(href=`/write`) write
+    table
+        for board in boardlist
+            tr
+                td=board.idx
+                td 
+                    a(href=`/board/${board.nation}/idx${board.idx}`)=board.subject 
+                td=board.content
+                td=board.created
+                td=board.user_id
+                td=board.user_name
+                td=board.hit
+        br
+        a(href='/') list
+

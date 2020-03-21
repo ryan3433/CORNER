@@ -1,0 +1,16 @@
+extends layouts/main
+
+block content
+    body
+        form(method="post" action="/write_process")
+            input(type="text" name="subject" placeholder="title" required=true)
+            textarea(name="content" placeholder="content" required=true)
+            select(name="nation" required=true)
+                option(value="korea") 국내
+                option(value="middle-east") 중동
+                option(value="oceania") 오세아니아
+                option(value="southeast-asian") 동남아시아
+                option(value="afreeca") 아프리카
+                option(value="europe") 유럽
+                option(value="america") 미주
+            input(type="submit")

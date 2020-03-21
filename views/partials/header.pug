@@ -1,0 +1,18 @@
+header.header
+    .header__wrapper
+        .header__column
+            a(href=`/`) 홈
+        .header__colums 롸2
+        .header__colums
+            ul
+                if !loggedUser
+                    li
+                        a(href='/join') Join
+                    li
+                        a(href='/login') Log In
+                else
+                    li
+                        a(href=`/profile/${loggedUser.id}`) #{loggedUser.name}
+                    li
+                        form(action="/logout" method="post")
+                            input(type="submit" value="logout")

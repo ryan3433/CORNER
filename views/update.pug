@@ -1,0 +1,26 @@
+extends layouts/main
+
+block content
+    body
+        form(method="post" action=`/update_process/${rows[0].idx}`)
+            input(type="text" name="subject" placeholder="title" value=rows[0].subject required=true)
+            input(type="text" name="user_name" placeholder="author" value=rows[0].user_name required=true)
+            textarea(name="content")=rows[0].content
+            select(name="nation" required=true)
+                option(class="korea" value="korea") 국내
+                option(class="middle-east" value="middle-east") 중동
+                option(class="oceania" value="oceania") 오세아니아
+                option(class="southeast-asian" value="southeast-asian") 동남아시아
+                option(class="afreeca" value="afreeca") 아프리카
+                option(class="europe" value="europe") 유럽
+                option(class="america" value="america") 미주
+            input(type="submit")
+        
+        //span.nation=rows[0].nation
+        //script.
+        //    const nation = document.getElementsByClassName(nation);
+        //    console.log(nation)
+        //    const selectedOption = document.getElementsByClassName(`${rows.nation}`)
+        //    const init = () => selectedOption.setAttribute("selected", "selected")
+        //    if (selectedOption) init()
+        
