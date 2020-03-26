@@ -1,8 +1,12 @@
 doctype html
-html
+<!DOCTYPE html>
+html(lang="en")
     head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
         link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/all.min.css", integrity="sha256-ybRkN9dBjhcS2qrW1z+hfCxq+1aBdwyQM5wlQoQVt/0=", crossorigin="anonymous")
         title #{pageTitle} | #{siteName}
+        <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
         link(rel="stylesheet", href="/static/styles.css")
     body
         include ../partials/header

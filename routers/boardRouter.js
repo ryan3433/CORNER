@@ -6,7 +6,8 @@ import {
   postUpdate,
   getUpdate,
   deleteBoard,
-  postWrite
+  postWrite,
+  search
 } from "../controllers/boardControllers";
 import {
   ensureAuthenticated,
@@ -15,6 +16,8 @@ import {
 } from "../middlewares";
 
 const boardRouter = express.Router();
+
+boardRouter.get("/search", search);
 
 boardRouter.get("/", loginRedirect, logoutRedirect, (req, res) => {
   res.render("home");

@@ -1,19 +1,24 @@
 extends layouts/main
 
-block content
-    body
-        a(href=`/write`) write
-    table
-        for board in boardlist
-            tr
-                td=board.idx
-                td 
-                    a(href=`/board/${board.nation}/idx${board.idx}`)=board.subject 
-                td=board.content
-                td=board.created
-                td=board.user_id
-                td=board.user_name
-                td=board.hit
-        br
-        a(href='/') list
 
+block content
+    .table__container
+        a(href=`/write`) write
+        table
+            - for (var i = (page*num)-num; i<(page*num); i++)
+                if i > length
+                    retrun
+                else
+                    tr
+                        td.tbl__num=i+1
+                        td.tbl__sub 
+                            a(href=`/board/${rows[i].nation}/idx${rows[i].idx}`)=rows[i].subject 
+                        td.tbl__date=rows[i].created
+                        td.tbl__user=rows[i].user_name
+                        td.tbl__nation=rows[i].nation
+                        td.tbl__hit=rows[i].hit
+        -for (var j = 0; j < length / num; j++)
+            a(class="numbering" href=`/board/${rows[j].nation}/pg${j+1}`)=j+1
+        br
+        br
+        a(class="board_list" href='/') Board list

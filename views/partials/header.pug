@@ -1,9 +1,13 @@
 header.header
     .header__wrapper
         .header__column
-            a(href=`/`) 홈
-        .header__colums 롸2
-        .header__colums
+            a(href=`/`) 
+                i.fas.fa-home
+                span        홈으로가기
+        .header__column
+            form(action="/search", method="get")
+                input(type="text", placeholder="Search by term...", name="term")
+        .header__column
             ul
                 if !loggedUser
                     li

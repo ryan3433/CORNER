@@ -1,0 +1,14 @@
+.home__banner {
+  margin: 50px 150px;
+  font-size: 30px;
+  font-weight: 500;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+.nations__container {
+  margin: 0 150px;
+  font-size: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(20px, auto);
+}

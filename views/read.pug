@@ -2,19 +2,37 @@ extends layouts/main
 
 block content
     body
-        h1= rows[0].subject
-        h2= rows[0].content
-        h4= rows[0].created
-        h3= rows[0].user_name
-        h3= rows[0].user_id
-        h3= rows[0].nation
-        h3= rows[0].hit
+        .board__container
+            .board__list
+                a(href=`/board/${rows[0].nation}/pg1`) 
+                    span=rows[0].nation
+            .board__subject
+                h1= rows[0].subject
+            .board__name_and_hit
+                span=rows[0].user_name
+                span · 조회수#{rows[0].hit}
+                span · #{rows[0].created}
+            
+            .board__update_and_delete
+                if loggedUser
+                    if loggedUser.id == rows[0].user_id
+                        a(href=`/board/${rows[0].nation}/${rows[0].idx}/update`) update
+                        br
+                        form(action=`/board/${rows[0].idx}/delete` method="post")
+                            input(type="submit" value="delete")
+            .board__content
+                #{rows[0].content}
+        
+        //-h3= rows[0].user_name
+        //-h3= rows[0].user_id
+        //-h3= rows[0].nation
+        //-h3= rows[0].hit
 
-    a(href=`/board/${rows[0].nation}/pg${page}`) list
-    br
-    if loggedUser
-        if loggedUser.id == rows[0].user_id
-            a(href=`/board/${rows[0].nation}/${rows[0].idx}/update`) update
-            br
-            form(action=`/board/${rows[0].idx}/delete` method="post")
-                input(type="submit" value="delete")
+    
+    //- br
+    //- if loggedUser
+    //-     if loggedUser.id == rows[0].user_id
+    //-         a(href=`/board/${rows[0].nation}/${rows[0].idx}/update`) update
+    //-         br
+    //-         form(action=`/board/${rows[0].idx}/delete` method="post")
+    //-             input(type="submit" value="delete")

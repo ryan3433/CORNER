@@ -1,31 +1,39 @@
 import db from "../mysql";
 
+export const search = (req, res) => {
+  const searchingBy = req.query.term;
+  console.log(searchingBy);
+  db.query(
+    "SELECT idx, subject, content, user_name, nation, hit, DATE_FORMAT(created, '%y/%b/%d') AS created FROM board WHERE content=? OR subject=?",
+    [searchingBy, searchingBy],
+    (err, rows) => {
+      if (err) console.log(err);
+      console.log(rows);
+      res.render("search", {
+        rows
+      });
+    }
+  );
+};
+
 export const boardList = (req, res) => {
   const nation = req.params.nation;
   const page = req.params.page;
-  const boardlist = [];
+  //const boardlist = [];
   db.query(
     "SELECT idx, subject, content, user_name, nation, hit, DATE_FORMAT(created, '%y/%b/%d') AS created FROM board WHERE nation=?",
     [nation],
     (err, rows) => {
       if (err) {
         console.log(err);
-      } else {
-        for (var i = 0; i < rows.length; i++) {
-          var board = {
-            idx: rows[i].idx,
-            subject: rows[i].subject,
-            content: rows[i].content,
-            created: rows[i].created,
-            user_id: rows[i].user_id,
-            user_name: rows[i].user_name,
-            nation: rows[i].nation,
-            hit: rows[i].hit
-          };
-          boardlist.push(board);
-        }
-        res.render("board", { boardlist, page, length: boardList.length });
       }
+      res.render("board", {
+        rows,
+        page,
+        num: 6,
+        pass: true,
+        length: rows.length - 1
+      });
     }
   );
 };

@@ -4,16 +4,20 @@ block content
     body
         form(method="post" action=`/update_process/${rows[0].idx}`)
             input(type="text" name="subject" placeholder="title" value=rows[0].subject required=true)
-            input(type="text" name="user_name" placeholder="author" value=rows[0].user_name required=true)
-            textarea(name="content")=rows[0].content
+            input(type="hidden" name="user_name" placeholder="author" value=rows[0].user_name required=true)
             select(name="nation" required=true)
-                option(class="korea" value="korea") 국내
-                option(class="middle-east" value="middle-east") 중동
-                option(class="oceania" value="oceania") 오세아니아
-                option(class="southeast-asian" value="southeast-asian") 동남아시아
-                option(class="afreeca" value="afreeca") 아프리카
-                option(class="europe" value="europe") 유럽
-                option(class="america" value="america") 미주
+                option(value="korea") 국내
+                option(value="israel") 이스라엘
+                option(value="bangladesh") 방글라데시
+                option(value="india") 인도
+                option(value="cambodia") 캄보디아
+                option(value="vietnam") 베트남
+                option(value="taiwan") 대만
+                option(value="guam") 괌
+                option(value="austrailia") 호주
+                option(value="hongkong") 홍콩
+            textarea(id="editor1" name="content" placeholder="content" required=true)=rows[0].content
+            <script>CKEDITOR.replace( 'editor1' )</script>
             input(type="submit")
         
         //span.nation=rows[0].nation
