@@ -46,4 +46,4 @@ app.use(boardRouter);
 
 const handleListen = () => console.log("✅ good job");
 
-app.listen(5000, handleListen);
+app.listen(process.env.PORT, handleListen);
