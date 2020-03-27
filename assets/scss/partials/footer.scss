@@ -1,0 +1,14 @@
+.footer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
+  padding-top: 20px;
+  border-top: 3px solid rgba(0, 0, 0, 0.1);
+  .footer__text {
+    color: rgba(0, 0, 0, 0.2);
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+}
