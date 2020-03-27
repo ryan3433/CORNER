@@ -17,11 +17,11 @@ import {
 
 const boardRouter = express.Router();
 
-boardRouter.get("/search", search);
-
 boardRouter.get("/", loginRedirect, logoutRedirect, (req, res) => {
   res.render("home");
 });
+
+boardRouter.get("/search", search);
 
 boardRouter.get(
   "/board/:nation/pg:page",
@@ -39,7 +39,7 @@ boardRouter.get(
 
 boardRouter.get("/write", logoutRedirect, ensureAuthenticated, getWrite);
 
-boardRouter.post("/write_process", postWrite);
+boardRouter.post("/write", postWrite);
 
 boardRouter.get(
   "/board/:nation/:idx/update",

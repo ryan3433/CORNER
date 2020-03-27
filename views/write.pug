@@ -2,7 +2,7 @@ extends layouts/main
 
 block content
     .write__container
-        form(method="post" action="/write_process")
+        form(method="post" action="/write")
             input(class="subject" type="text" name="subject" placeholder="title" required=true)
             select(name="nation" required=true)
                 option(value="korea") 국내

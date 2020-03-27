@@ -1,5 +1,6 @@
 import express from "express";
 import morgan from "morgan";
+import methodOverride from "method-override";
 import bodyParser from "body-parser";
 import { localsMiddleware } from "./middlewares";
 import session from "express-session";
@@ -17,6 +18,7 @@ const app = express();
 app.set("view engine", "pug");
 
 app.use("/static", express.static("static"));
+app.use(methodOverride());
 app.use(morgan("dev"));
 app.use(flash());
 app.use(bodyParser.json());
@@ -41,23 +43,6 @@ app.use(passport.session());
 app.use(localsMiddleware);
 app.use(userRouter);
 app.use(boardRouter);
-
-app.get(
-  "/auth/google/callback",
-  passport.authenticate("google", { failureRedirect: "/login" }),
-  function(req, res) {
-    res.redirect("/");
-  }
-);
-
-app.get(
-  "/auth/github/callback",
-  passport.authenticate("github", { failureRedirect: "/login" }),
-  (req, res) => {
-    // Successful authentication, redirect home.
-    res.redirect("/");
-  }
-);
 
 const handleListen = () => console.log("✅ good job");
 

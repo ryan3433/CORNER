@@ -7,17 +7,14 @@ block content
         if rows.length === 0
             h5 No Videos Found
         else
-            - for (var i = 0; i<rows.length; i++)
-                table
-                    tr
-                        td=i
-                        td 
-                            a(href=`/board/${rows[i].nation}/idx${rows[i].idx}`)=rows[i].subject 
-                        td=rows[i].subject
-                        td=rows[i].content
-                        td=rows[i].created
-                        td=rows[i].user_name
-                        td=rows[i].user_id
-                        td=rows[i].nation
-                        td=rows[i].hit
+            .table__container
+                - for (var i = 0; i<rows.length; i++)
+                    table
+                        tr
+                            td 
+                                a(href=`/board/${rows[i].nation}/idx${rows[i].idx}`)=rows[i].subject 
+                            td=rows[i].created
+                            td=rows[i].user_name
+                            td=rows[i].nation
+                            td=rows[i].hit
     

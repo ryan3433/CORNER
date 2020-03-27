@@ -20,19 +20,4 @@ block content
                         br
                         form(action=`/board/${rows[0].idx}/delete` method="post")
                             input(type="submit" value="delete")
-            .board__content
-                #{rows[0].content}
-        
-        //-h3= rows[0].user_name
-        //-h3= rows[0].user_id
-        //-h3= rows[0].nation
-        //-h3= rows[0].hit
-
-    
-    //- br
-    //- if loggedUser
-    //-     if loggedUser.id == rows[0].user_id
-    //-         a(href=`/board/${rows[0].nation}/${rows[0].idx}/update`) update
-    //-         br
-    //-         form(action=`/board/${rows[0].idx}/delete` method="post")
-    //-             input(type="submit" value="delete")
+            .board__content !{rows[0].content}

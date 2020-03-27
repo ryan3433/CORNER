@@ -1,9 +1,9 @@
 extends layouts/main
 
 block content
-    body
-        form(method="post" action=`/update_process/${rows[0].idx}`)
-            input(type="text" name="subject" placeholder="title" value=rows[0].subject required=true)
+    .update__container
+        form(method="POST" action=`/update_process/${rows[0].idx}`)
+            input(class="subject" type="text" name="subject" placeholder="title" value=rows[0].subject required=true)
             input(type="hidden" name="user_name" placeholder="author" value=rows[0].user_name required=true)
             select(name="nation" required=true)
                 option(value="korea") 국내
