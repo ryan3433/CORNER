@@ -14,6 +14,7 @@ ssm.getParameter(params, (err, data) => {
     console.log(err, err.stack);
   } else {
     const config = JSON.parse(data.Parameter.Value);
+    console.log(config);
     return config;
   }
 });
