@@ -1,5 +1,4 @@
 import "@babel/polyfill";
-import AWS from "aws-sdk";
 import express from "express";
 import morgan from "morgan";
 import methodOverride from "method-override";
@@ -18,11 +17,6 @@ import dotenv from "dotenv";
 
 dotenv.config();
 const app = express();
-const ssm = new AWS.SSM();
-const params = {
-  Name: "config",
-  WithDecryption: false
-};
 
 app.use(helmet());
 app.set("view engine", "pug");
@@ -34,26 +28,18 @@ app.use(flash());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
-  ssm.getParameter(params, (err, data) => {
-    if (err) {
-      console.log(err, err.stack);
-    } else {
-      const config = JSON.parse(data.Parameter.Value);
-
-      session({
-        //key: "ryuniCookie",
-        secret: config.SASSION_PW,
-        resave: false,
-        saveUninitialized: false,
-        store: new MySQLStore({
-          host: "localhost",
-          port: 3306,
-          user: config.DB_USER,
-          password: config.DB_PASSWORD,
-          database: "mozo"
-        })
-      });
-    }
+  session({
+    //key: "ryuniCookie",
+    secret: process.env.SASSION_PW,
+    resave: false,
+    saveUninitialized: false,
+    store: new MySQLStore({
+      host: "localhost",
+      port: 3306,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: "mozo"
+    })
   })
 );
 app.use(passport.initialize());
@@ -64,4 +50,4 @@ app.use(boardRouter);
 
 const handleListen = () => console.log("✅ good job");
 
-app.listen(5000, handleListen);
+app.listen(process.env.PORT, handleListen);
