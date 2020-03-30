@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const db = mysql.createConnection({
-  host: "localhost",
+  host: "database-2.cyaz28chrjat.ap-northeast-2.rds.amazonaws.com",
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: "mozo"

@@ -34,7 +34,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     store: new MySQLStore({
-      host: "localhost",
+      host: "database-2.cyaz28chrjat.ap-northeast-2.rds.amazonaws.com",
       port: 3306,
       user: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
