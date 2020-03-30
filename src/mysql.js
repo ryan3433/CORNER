@@ -4,6 +4,11 @@ import dotenv from "dotenv";
 dotenv.config();
 const ssm = new AWS.SSM();
 
+const params = {
+  Name: "config",
+  WithDecryption: false
+};
+
 ssm.getParameter(params, (err, data) => {
   if (err) {
     console.log(err, err.stack);
