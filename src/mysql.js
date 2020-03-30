@@ -9,11 +9,13 @@ const params = {
   WithDecryption: false
 };
 
+let config;
+
 ssm.getParameter(params, (err, data) => {
   if (err) {
     console.log(err, err.stack);
   } else {
-    const config = JSON.parse(data.Parameter.Value);
+    config = JSON.parse(data.Parameter.Value);
     console.log(config);
     return config;
   }
