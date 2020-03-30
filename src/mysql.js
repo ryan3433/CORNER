@@ -14,21 +14,23 @@ ssm.getParameter(params, (err, data) => {
     console.log(err, err.stack);
   } else {
     const config = JSON.parse(data.Parameter.Value);
-
-    const db = mysql.createConnection({
-      host: "localhost",
-      user: config.DB_USER,
-      password: config.DB_PASSWORD,
-      database: "mozo"
-    });
-
-    db.connect(err => {
-      if (err) {
-        console.error(`error connecting : ${err.stack}`);
-        return;
-      }
-      console.log(`✅ connected as id ${db.threadId}`);
-    });
-    export default db;
+    return config;
   }
 });
+
+const db = mysql.createConnection({
+  host: "localhost",
+  user: config.DB_USER,
+  password: config.DB_PASSWORD,
+  database: "mozo"
+});
+
+db.connect(err => {
+  if (err) {
+    console.error(`error connecting : ${err.stack}`);
+    return;
+  }
+  console.log(`✅ connected as id ${db.threadId}`);
+});
+
+export default db;
