@@ -21,14 +21,15 @@ ssm.getParameter(params, (err, data) => {
       password: config.DB_PASSWORD,
       database: "mozo"
     });
+
+    db.connect(err => {
+      if (err) {
+        console.error(`error connecting : ${err.stack}`);
+        return;
+      }
+      console.log(`✅ connected as id ${db.threadId}`);
+    });
   }
-});
-db.connect(err => {
-  if (err) {
-    console.error(`error connecting : ${err.stack}`);
-    return;
-  }
-  console.log(`✅ connected as id ${db.threadId}`);
 });
 
 export default db;
