@@ -29,7 +29,6 @@ ssm.getParameter(params, (err, data) => {
       }
       console.log(`✅ connected as id ${db.threadId}`);
     });
+    export default db;
   }
 });
-
-export default db;
