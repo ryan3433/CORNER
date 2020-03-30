@@ -1,9 +1,12 @@
+import "@babel/polyfill";
 import express from "express";
 import morgan from "morgan";
 import methodOverride from "method-override";
 import bodyParser from "body-parser";
 import { localsMiddleware } from "./middlewares";
 import session from "express-session";
+import helmet from "helmet";
+import path from "path";
 import passport from "passport";
 import flash from "connect-flash";
 const MySQLStore = require("express-mysql-session")(session);
@@ -15,9 +18,10 @@ import dotenv from "dotenv";
 dotenv.config();
 const app = express();
 
+app.use(helmet());
 app.set("view engine", "pug");
-
-app.use("/static", express.static("static"));
+app.set("views", path.join(__dirname, "views"));
+app.use("/static", express.static(path.join(__dirname, "static")));
 app.use(methodOverride());
 app.use(morgan("dev"));
 app.use(flash());
