@@ -8,12 +8,13 @@ import {
   googleLoginCallBack,
   githubLoginCallBack
 } from "./controllers/userControllers";
+import { config } from "aws-sdk";
 
 passport.use(
   new GoogleStrategy(
     {
-      clientID: process.env.GG_ID,
-      clientSecret: process.env.GG_SECRET,
+      clientID: config.GG_ID,
+      clientSecret: config.GG_SECRET,
       callbackURL: "http://localhost:5000/auth/google/callback"
     },
     googleLoginCallBack
@@ -23,8 +24,8 @@ passport.use(
 passport.use(
   new GitHubStrategy(
     {
-      clientID: process.env.GH_ID,
-      clientSecret: process.env.GH_SECRET,
+      clientID: config.GH_ID,
+      clientSecret: config.GH_SECRET,
       callbackURL: "http://localhost:5000/auth/github/callback"
     },
     githubLoginCallBack
