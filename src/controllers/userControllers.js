@@ -22,6 +22,7 @@ export const postJoin = async (req, res, next) => {
       bcrypt.hash(password, 10, function(err, hashedPw) {
         if (err) {
           console.log(err);
+          throw err;
         }
         db.beginTransaction(err => {
           if (err) console.log(err);
@@ -117,7 +118,10 @@ export const googleLoginCallBack = (
   } = profile;
   try {
     db.beginTransaction(err => {
-      if (err) console.log(err);
+      if (err) {
+        console.log(err);
+        throw err;
+      }
       db.query("SELECT * FROM user WHERE email=?", [email], (err, rows) => {
         if (err) {
           console.log(err);

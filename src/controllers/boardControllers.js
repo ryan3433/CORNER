@@ -7,8 +7,10 @@ export const search = (req, res) => {
     "SELECT idx, subject, content, user_name, nation, hit, DATE_FORMAT(created, '%y/%b/%d') AS created FROM board WHERE content=? OR subject=?",
     [searchingBy, searchingBy],
     (err, rows) => {
-      if (err) console.log(err);
-      console.log(rows);
+      if (err) {
+        console.log(err);
+        throw err;
+      }
       res.render("search", {
         rows
       });
@@ -26,6 +28,7 @@ export const boardList = (req, res) => {
     (err, rows) => {
       if (err) {
         console.log(err);
+        throw err;
       }
       res.render("board", {
         rows,

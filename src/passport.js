@@ -14,7 +14,7 @@ passport.use(
     {
       clientID: process.env.GG_ID,
       clientSecret: process.env.GG_SECRET,
-      callbackURL: "http://localhost:5000/auth/google/callback"
+      callbackURL: "http://13.124.21.202:5000/auth/google/callback"
     },
     googleLoginCallBack
   )
@@ -25,7 +25,7 @@ passport.use(
     {
       clientID: process.env.GH_ID,
       clientSecret: process.env.GH_SECRET,
-      callbackURL: "http://localhost:5000/auth/github/callback"
+      callbackURL: "http://13.124.21.202:5000/auth/github/callback"
     },
     githubLoginCallBack
   )
@@ -46,7 +46,7 @@ passport.use(
           const email = rows[0].email;
           const dbPassword = rows[0].password;
           if (err) {
-            console.log(err);
+            throw err;
           } else {
             if (username === email) {
               bcrypt.compare(password, dbPassword, (err, result) => {
