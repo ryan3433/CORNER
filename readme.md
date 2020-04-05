@@ -7,7 +7,7 @@ node.js, express.js, javascript, mySQL, babel, passport.js, scss, pug, webpack,
 MVC design pattern    
 AWS ec2, RDS    
 
-![main](C:\Users\patmo\Pictures\Screenshots\스크린샷(23))
+![main](image/스크린샷(23).png)
 
 ***
 
